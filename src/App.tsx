@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import { Seo1 } from './components/Seo1';
+import { Seo2 } from './components/Seo2';
+import { preload } from 'react-dom';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    setCount((count) => count + 1);
+  };
+
+  // Precarga el CSS en caso de que se llegue a usar
+
+  preload('https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css', {
+    as: 'style',
+  });
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* No sobreescribe el title, genera uno nuevo */}
+      <Seo1 />
+      <Seo2 />
+
+      <title>{`You clicked ${count} times`}</title>
+      <meta name="description" content="Hello, react 19" />
+
+      <button onClick={handleClick}>
+        set count
+        {count}
+      </button>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
