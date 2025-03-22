@@ -3,6 +3,7 @@ import './App.css';
 import { Seo1 } from './components/Seo1';
 import { Seo2 } from './components/Seo2';
 import { preload } from 'react-dom';
+import { UseFetchExample } from './components/UseFetchExample';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -30,6 +31,8 @@ function App() {
         set count
         {count}
       </button>
+
+      <UseFetchExample />
     </>
   );
 }
